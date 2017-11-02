@@ -14,30 +14,17 @@ with open(filename) as csvfile:
     flag=1
 
     for row in header:
-        date=(row[0])
-        cur1=(row[20])
-        cur2=(row[34])
-        cur3=(row[48])
-        cur4=(row[62])
-        cur5=(row[76])
+        write_data=row[0]+','+row[20]+','+row[34]+','+row[48]+','+row[62]+','+row[76]+'\n'
       
         if (row[26]!='0' or row[40]!='0' or row[54]!='0' or row[68]!='0' or row[82]!='0') and i!=0 and flag==1:
             print('first error detected. Details as follows:')
             print('alarm codes',row[26],row[40],row[54],row[68],row[82],'for the time and date',row[0])
             flag=-1
-        
-        newFile.write(date)
-        newFile.write(',')
-        newFile.write(cur1)
-        newFile.write(',')
-        newFile.write(cur2)
-        newFile.write(',')
-        newFile.write(cur3)
-        newFile.write(',')
-        newFile.write(cur4)
-        newFile.write(',')
-        newFile.write(cur5)
-        newFile.write('\n')
+        elif i!=0 and flag==1:
+            print('no alarm raised in this file!')
+            flag=-1
+            
+        newFile.write(write_data)
         i=i+1
 
 print('total number of data items found in file:',i)
